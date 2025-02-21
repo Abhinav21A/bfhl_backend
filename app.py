@@ -4,6 +4,11 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def home():
+    return jsonify({"message": "Welcome to the BFHL API!"}), 200
+
+
 @app.route('/bfhl', methods=['POST'])
 def process_data():
     try:
@@ -31,4 +36,4 @@ def get_operation_code():
     return jsonify({"operation_code": 1}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get("PORT", 5000)))
+    app.run(debug=True)
